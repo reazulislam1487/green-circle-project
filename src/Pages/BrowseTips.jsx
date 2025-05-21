@@ -92,7 +92,7 @@ const BrowseTips = () => {
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 max-w-6xl mb-20 mx-auto  min-h-[calc(100vh-10rem)]">
       <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
         Browse Garden Tips
       </h2>

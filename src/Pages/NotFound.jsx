@@ -17,7 +17,7 @@ const NotFound = () => {
         to="/"
         className="btn bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-medium"
       >
-        🌿 Back to Home
+        Back to Home
       </Link>
     </div>
   );

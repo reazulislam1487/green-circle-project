@@ -1,57 +1,10 @@
-// import React, { useEffect, useState, useContext } from "react";
-// import { AuthContext } from "../Context/AuthContext";
-
-// const MyTips = () => {
-//   const { user } = useContext(AuthContext);
-//   const [tips, setTips] = useState([]);
-//   //   console.log(user.email);
-
-//   useEffect(() => {
-//     if (!user) return;
-//     fetch(`http://localhost:3000/myTips?email=${user.email}`)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//         setTips(data);
-//       });
-//   }, [user]);
-//   console.log(tips);
-
-//   return (
-//     <div className="p-4 max-w-5xl mx-auto">
-//       <h2 className="text-2xl font-bold text-center mb-6">My Garden Tips</h2>
-//       <table className="w-full border text-left">
-//         <thead className="bg-green-800 text-white">
-//           <tr>
-//             <th className="p-2 border">Title</th>
-//             <th className="p-2 border">Description</th>
-//             <th className="p-2 border">Status</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {tips.map((tip) => (
-//             <tr key={tip._id} className="hover:bg-green-50">
-//               <td className="p-2 border">{tip.title}</td>
-//               <td className="p-2 border">{tip.description}</td>
-//               <td className="p-2 border">
-//                 {tip.isPublic ? "Public" : "Private"}
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default MyTips;
-
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import Loading from "../Components/Loading";
+import Swal from "sweetalert2";
 
 const MyTips = () => {
   const { user } = useContext(AuthContext);
@@ -72,23 +25,37 @@ const MyTips = () => {
   }, [user]);
 
   const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this tip?"
-    );
-    if (!confirmDelete) return;
-
-    fetch(`http://localhost:3000/tips/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          alert("Tip deleted successfully");
-          setTips(tips.filter((tip) => tip._id !== id));
-        }
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are about to delete this tip. This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/tips/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your tip has been deleted.",
+                icon: "success",
+              });
+              setTips((prevTips) => prevTips.filter((tip) => tip._id !== id));
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting tip:", error);
+            Swal.fire("Error", "Something went wrong while deleting.", "error");
+          });
+      }
+    });
   };
-
   const handleUpdate = (id) => {
     navigate(`/updateTip/${id}`);
   };
@@ -97,7 +64,7 @@ const MyTips = () => {
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 max-w-6xl mx-auto min-h-[calc(100vh-10rem)]">
       <h2 className="text-3xl font-bold text-center mb-8 text-green-800">
         My Garden Tips
       </h2>

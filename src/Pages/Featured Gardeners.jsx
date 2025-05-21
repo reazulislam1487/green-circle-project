@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
+import Loading from "../Components/Loading";
 // import your JSON file
 
 const FeaturedGardeners = () => {
   const [gardenerProfiles, setGardenerProfiles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/gardeners")
       .then((res) => res.json())
       .then((data) => {
         setGardenerProfiles(data);
+        setLoading(false);
       });
   }, []);
+  if (loading || !gardenerProfiles) {
+    return <Loading></Loading>;
+  }
   return (
     <section className=" max-w-6xl mx-auto p-6 my-20 bg-green-50 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-green-800">

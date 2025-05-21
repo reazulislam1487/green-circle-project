@@ -17,6 +17,7 @@ import TipDetails from "./Pages/TipDetails.jsx";
 import PrivateRoutes from "./Context/PrivateRoutes.jsx";
 import MyTips from "./Pages/MyTips.jsx";
 import Loading from "./Components/Loading.jsx";
+import UpdateTip from "./Pages/UpdateTip.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,24 +26,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // loader: () => fetch("http://localhost:3000/coffees"),
         Component: Home,
       },
-      // { path: "/addCoffee", Component: AddCoffee },
-      // { path: "/updateCoffee", Component: UpdateCoffee },
-      // {
-      //   path: "/coffee/:id",
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/coffees/${params.id}`),
-      //   Component: CoffeeDetails,
-      //   hydrateFallbackElement: <h1>Loading...</h1>,
-      // },
-      // {
-      //   path: "/updateCoffee/:id",
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/coffees/${params.id}`),
-      //   Component: UpdateCoffee,
-      // },
+
       {
         path: "signIn",
         Component: SignIn,
@@ -76,21 +62,13 @@ const router = createBrowserRouter([
         ),
         hydrateFallbackElement: <Loading></Loading>,
       },
-
-      // {
-      //   path: "/users/:id",
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/users/${params.id}`),
-      //   Component: UserDetails,
-      //   hydrateFallbackElement: <h1>Loading...</h1>,
-      // },
-      // {
-      //   path: "/update/:id",
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/users/${params.id}`),
-      //   Component: UpdateUser,
-      //   hydrateFallbackElement: <h1>Loading...</h1>,
-      // },
+      {
+        path: "/updateTip/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/updateTips/${params.id}`),
+        Component: UpdateTip,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
     ],
   },
   {
