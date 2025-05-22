@@ -41,7 +41,7 @@ const Header = () => {
   return (
     <div>
       <div>
-        <nav className="navbar w-full lg:px-10 lg:py-2 mx-auto bg-green-900 shadow-md">
+        <nav className="navbar w-full lg:px-10 lg:py-4 mx-auto bg-green-900 shadow-md">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -163,13 +163,13 @@ const Header = () => {
                     alt="User"
                     className="w-10 h-10 rounded-full cursor-pointer"
                   />
-                  <span className="absolute bg-black bg-opacity-70 text-white text-sm rounded px-2 py-1 top-0 left-0 -translate-x-1/2 opacity-0 hover:opacity-100 transition">
+                  <span className="absolute bg-black bg-opacity-80 text-white text-sm rounded px-3 py-1 top-1/2 right-full -translate-y-1/2 mr-2 opacity-0 group-hover:opacity-100 transition duration-300 z-10 whitespace-nowrap">
                     {user.displayName}
                   </span>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-green-800 rounded-box z-10 mt-10 shadow-lg text-green-200"
+                  className="menu menu-sm dropdown-content rounded-box z-10 mt-10 shadow-lg text-green-200"
                 >
                   <Link
                     onClick={handleLogout}
