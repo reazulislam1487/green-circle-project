@@ -162,6 +162,7 @@ const Header = () => {
                     src={user.photoURL ? user.photoURL : userPic}
                     alt="User"
                     className="w-10 h-10 rounded-full cursor-pointer"
+                    referrerPolicy="no-referrer"
                   />
                   <span className="absolute bg-black bg-opacity-80 text-white text-sm rounded px-3 py-1 top-1/2 right-full -translate-y-1/2 mr-2 opacity-0 group-hover:opacity-100 transition duration-300 z-10 whitespace-nowrap">
                     {user.displayName}

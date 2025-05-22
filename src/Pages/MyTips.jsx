@@ -77,7 +77,7 @@ const MyTips = () => {
             <thead className="bg-green-700 text-white">
               <tr>
                 <th className="p-4 border-b">Title</th>
-                <th className="p-4 border-b hidden md:flex">Description</th>
+                <th className="p-4 border-b hidden md:block ">Description</th>
                 <th className="p-4 border-b">Status</th>
                 <th className="p-4 border-b">Actions</th>
               </tr>
@@ -91,7 +91,7 @@ const MyTips = () => {
                   <td className="p-4 border-b text-green-900 font-medium">
                     {tip.title}
                   </td>
-                  <td className="p-4 hidden md:flex border-b text-gray-700">
+                  <td className="p-4 pb-11 hidden md:block border-b text-gray-700">
                     {tip.description}
                   </td>
                   <td className="p-4 border-b">

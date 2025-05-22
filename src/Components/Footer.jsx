@@ -52,7 +52,7 @@ const Footer = () => {
           </h3>
           <div className="flex space-x-6 text-green-300">
             <a
-              href="https://facebook.com/yourpage"
+              href="https://www.facebook.com/thinkerboyreaz/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-500 transition-colors"
@@ -68,23 +68,23 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://twitter.com/yourprofile"
+              href="https://www.linkedin.com/in/reazul-islam-reaz-467509318/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-500 transition-colors"
               aria-label="Twitter"
             >
               <svg
-                className="w-6 h-6 fill-current"
+                className="w-5 h-5 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
-                <path d="M23 3a10.9 10.9 0 01-3.14.86A4.48 4.48 0 0022.43.36a9.17 9.17 0 01-2.88 1.1A4.52 4.52 0 0016.11 0a4.48 4.48 0 00-4.47 4.47c0 .35.04.7.12 1.03A12.84 12.84 0 013 1.64a4.47 4.47 0 001.39 6 4.41 4.41 0 01-2.03-.57v.06a4.48 4.48 0 003.6 4.4 4.5 4.5 0 01-2.02.08 4.49 4.49 0 004.2 3.12A9 9 0 011 19.54 12.73 12.73 0 007 21c8.25 0 12.77-6.84 12.77-12.77 0-.19 0-.39-.01-.58A9.07 9.07 0 0023 3z" />
+                <path d="M4.98 3.5C4.98 5 3.88 6 2.5 6S0 5 0 3.5 1.12 1 2.5 1s2.48 1 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.53-1 1.83-2.2 3.76-2.2 4.02 0 4.76 2.65 4.76 6.1V24h-4v-7.8c0-1.85-.03-4.23-2.6-4.23-2.6 0-3 2.03-3 4.1V24h-4V8z" />
               </svg>
             </a>
 
             <a
-              href="https://instagram.com/yourprofile"
+              href="https://www.instagram.com/reazulislamreaz.1/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-500 transition-colors"

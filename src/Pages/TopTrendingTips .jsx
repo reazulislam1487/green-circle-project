@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Lightbulb } from "lucide-react";
-
-const tips = [
-  "Always write clean, readable code.",
-  "Use semantic HTML for better accessibility.",
-  "Break components into reusable parts.",
-  "Keep your state management minimal and effective.",
-  "Use environment variables for secrets.",
-  "Optimize images and assets for faster loading.",
-];
+import Loading from "../Components/Loading";
+import TipCard from "./TipCard";
 
 const TopTrendingTips = () => {
+  const [tips, setTips] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/toptrending")
+      .then((res) => res.json())
+      .then((data) => {
+        setTips(data);
+        setLoading(false);
+      });
+  }, []);
+  console.log(tips);
+  if (loading || !tips) {
+    return <Loading></Loading>;
+  }
   return (
     <section className=" py-10 mb-10 px-4 bg-gray-100">
       <div className="max-w-6xl mx-auto">
@@ -19,16 +27,8 @@ const TopTrendingTips = () => {
           Top Trending Tips
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tips.map((tip, index) => (
-            <div
-              key={index}
-              className="bg-white shadow rounded-2xl p-5 hover:shadow-lg transition-all"
-            >
-              <h3 className="text-lg font-medium text-gray-800 mb-2">
-                Tip {index + 1}
-              </h3>
-              <p className="text-gray-600">{tip}</p>
-            </div>
+          {tips.map((tip) => (
+            <TipCard key={tip._id} tip={tip} />
           ))}
         </div>
       </div>
