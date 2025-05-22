@@ -1,73 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { Link } from "react-router";
-// import { Eye } from "lucide-react";
-// import Loading from "../Components/Loading";
-
-// const BrowseTips = () => {
-//   const [tips, setTips] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     fetch("http://localhost:3000/browseTips")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setTips(data);
-//         setLoading(false);
-//       });
-//   }, []);
-//   if (loading || !tips) {
-//     return <Loading></Loading>;
-//   }
-//   return (
-//     <div className="p-6">
-//       <h2 className="text-2xl font-bold mb-4">Browse Tips</h2>
-//       <div className="overflow-x-auto">
-//         <table className="min-w-full bg-white rounded shadow">
-//           <thead className="bg-gray-100 text-gray-700 text-left">
-//             <tr>
-//               <th className="p-3">Image</th>
-//               <th className="p-3">Title</th>
-//               <th className="p-3">Category</th>
-//               <th className="p-3">Action</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {tips.map((tip) => (
-//               <tr key={tip._id} className="border-b hover:bg-gray-50">
-//                 <td className="p-3">
-//                   <img
-//                     src={tip.imageUrl}
-//                     alt={tip.title}
-//                     className="w-16 h-16 rounded object-cover"
-//                   />
-//                 </td>
-//                 <td className="p-3">{tip.title}</td>
-//                 <td className="p-3">{tip.category}</td>
-//                 <td className="p-3">
-//                   <Link
-//                     to={`/browseTips/${tip._id}`}
-//                     className="text-blue-600 cursor-pointer hover:underline flex items-center gap-2"
-//                   >
-//                     <Eye className="w-5 h-5" />
-//                     <span>See More</span>
-//                   </Link>
-//                 </td>
-//               </tr>
-//             ))}
-//             {tips.length === 0 && (
-//               <tr>
-//                 <td colSpan="4" className="text-center p-4 text-gray-500">
-//                   No public tips available.
-//                 </td>
-//               </tr>
-//             )}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
 // export default BrowseTips;
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -77,15 +7,18 @@ import Loading from "../Components/Loading";
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [difficultyFilter, setDifficultyFilter] = useState("Easy");
 
   useEffect(() => {
-    fetch("http://localhost:3000/browseTips")
+    fetch(
+      `http://localhost:3000/browseTips?difficultyFilterParams=${difficultyFilter}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setTips(data);
         setLoading(false);
       });
-  }, []);
+  }, [difficultyFilter]);
 
   if (loading || !tips) {
     return <Loading />;
@@ -96,6 +29,20 @@ const BrowseTips = () => {
       <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
         Browse Garden Tips
       </h2>
+      <div className="mb-4">
+        <label className="mr-2 font-medium text-gray-700">
+          Filter by Difficulty:
+        </label>
+        <select
+          value={difficultyFilter}
+          onChange={(e) => setDifficultyFilter(e.target.value)}
+          className="p-2 border rounded-md"
+        >
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
 
       <div className="overflow-x-auto shadow-lg rounded-lg border border-green-200 bg-white">
         <table className="min-w-full text-left">
