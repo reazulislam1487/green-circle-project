@@ -92,7 +92,7 @@ const BrowseTips = () => {
   }
 
   return (
-    <div className="p-6 max-w-6xl mb-20 mx-auto  min-h-[calc(100vh-10rem)]">
+    <div className="p-3 md:p-6 max-w-6xl mb-20 mx-auto  min-h-[calc(100vh-10rem)]">
       <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
         Browse Garden Tips
       </h2>
@@ -130,7 +130,7 @@ const BrowseTips = () => {
                     className="inline-flex items-center gap-2 text-green-700 font-medium hover:text-green-900 transition"
                   >
                     <Eye className="w-5 h-5" />
-                    <span>See More</span>
+                    <span className="hidden md:flex">See More</span>
                   </Link>
                 </td>
               </tr>

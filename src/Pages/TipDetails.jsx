@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router";
 import Loading from "../Components/Loading";
+import Swal from "sweetalert2";
 
 const TipDetails = () => {
   const { id } = useParams();
@@ -24,6 +25,25 @@ const TipDetails = () => {
   }, [id]);
 
   const handleLike = () => {
+    fetch(`http://localhost:3000/browseTips/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: liked ? -1 : 1 }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: `You ${liked ? "liked" : "liked"} this tip!`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
+      .catch((error) => {
+        console.error("Error updating like status:", error);
+      });
     setLiked(!liked);
   };
 
@@ -49,10 +69,10 @@ const TipDetails = () => {
         <button
           onClick={handleLike}
           className={`absolute top-4 right-4 text-3xl transition-transform duration-300 ${
-            liked ? "text-red-500 scale-110" : "text-gray-400"
+            liked ? "text-red-500 scale-110" : "text-red-500 scale-110"
           }`}
         >
-          {liked ? <FaHeart /> : <FaRegHeart />}
+          {liked ? <FaHeart /> : <FaHeart />}
         </button>
 
         <h2 className="text-4xl font-extrabold text-green-700 mb-4">

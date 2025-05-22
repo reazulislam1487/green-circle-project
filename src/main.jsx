@@ -18,6 +18,7 @@ import PrivateRoutes from "./Context/PrivateRoutes.jsx";
 import MyTips from "./Pages/MyTips.jsx";
 import Loading from "./Components/Loading.jsx";
 import UpdateTip from "./Pages/UpdateTip.jsx";
+import ExploreGardeners from "./Pages/ExploreGardeners.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,15 @@ const router = createBrowserRouter([
       },
       {
         path: "shareGardenTipPage",
-        Component: ShareGardenTipPage,
+        element: (
+          <PrivateRoutes>
+            <ShareGardenTipPage />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "exploreGardeners",
+        Component: ExploreGardeners,
       },
       {
         path: "browseTips",
@@ -48,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: "myTips",
-        Component: MyTips,
+        element: (
+          <PrivateRoutes>
+            <MyTips />
+          </PrivateRoutes>
+        ),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {

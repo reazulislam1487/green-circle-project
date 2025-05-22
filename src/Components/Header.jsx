@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import userPic from "/images.png";
-import logo from "/logo.png";
 import { AuthContext } from "../Context/AuthContext";
 
 const Header = () => {
@@ -42,7 +41,7 @@ const Header = () => {
   return (
     <div>
       <div>
-        <nav className="navbar w-full lg:px-10 lg:py-4 mx-auto bg-green-900 shadow-md">
+        <nav className="navbar w-full lg:px-10 lg:py-2 mx-auto bg-green-900 shadow-md">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -75,23 +74,36 @@ const Header = () => {
                 >
                   Home
                 </NavLink>
+
                 <NavLink
-                  to="/signUp"
+                  to="/exploreGardeners"
                   className="mt-1 hover:bg-green-700 rounded px-2 py-1"
                 >
-                  Sign Up
+                  Explore Gardeners
                 </NavLink>
                 <NavLink
-                  to="/signIn"
+                  to="/browseTips"
                   className="mt-1 hover:bg-green-700 rounded px-2 py-1"
                 >
-                  Sign In
+                  browseTips{" "}
+                </NavLink>
+                <NavLink
+                  to="/shareGardenTipPage"
+                  className="mt-1 hover:bg-green-700 rounded px-2 py-1"
+                >
+                  Share a Garden Tip
+                </NavLink>
+                <NavLink
+                  to="/myTips"
+                  className="mt-1 hover:bg-green-700 rounded px-2 py-1"
+                >
+                  My Tips
                 </NavLink>
               </ul>
             </div>
             <img
               className="w-10 hidden md:flex rounded-full"
-              src={logo}
+              src="https://i.ibb.co/N2CRDq0w/logo.png"
               alt="GreenCircle Logo"
             />
             <a className="font-bold text-lg hidden lg:flex md:text-lg lg:text-xl text-green-200 ml-2">
@@ -108,7 +120,7 @@ const Header = () => {
                 Home
               </NavLink>
               <NavLink
-                to="/SignUp"
+                to="/exploreGardeners"
                 className="px-4 py-2 text-sm lg:text-lg rounded hover:bg-green-700 transition"
               >
                 Explore Gardeners
@@ -119,18 +131,22 @@ const Header = () => {
               >
                 Browse Tips
               </NavLink>
-              <NavLink
-                to="/shareGardenTipPage"
-                className=" px-4 py-2 text-sm lg:text-lg rounded hover:bg-green-700 transition"
-              >
-                Share a Garden Tip
-              </NavLink>
-              <NavLink
-                to="/myTips"
-                className=" px-4 py-2 text-sm lg:text-lg rounded hover:bg-green-700 transition"
-              >
-                My Tips
-              </NavLink>
+              {user && (
+                <NavLink
+                  to="/shareGardenTipPage"
+                  className=" px-4 py-2 text-sm lg:text-lg rounded hover:bg-green-700 transition"
+                >
+                  Share a Garden Tip
+                </NavLink>
+              )}
+              {user && (
+                <NavLink
+                  to="/myTips"
+                  className="px-4 py-2 text-sm lg:text-lg rounded hover:bg-green-700 transition"
+                >
+                  My Tips
+                </NavLink>
+              )}
             </ul>
           </div>
 

@@ -45,15 +45,15 @@ const ShareGardenTipPage = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          // setFormData({
-          //   title: "",
-          //   plantType: "",
-          //   difficulty: "Easy",
-          //   description: "",
-          //   imageUrl: "",
-          //   category: "Composting",
-          //   availability: "Public",
-          // });
+          setFormData({
+            title: "",
+            plantType: "",
+            difficulty: "Easy",
+            description: "",
+            imageUrl: "",
+            category: "Composting",
+            availability: "Public",
+          });
         } else {
           Swal.fire({
             icon: "success",
@@ -67,7 +67,7 @@ const ShareGardenTipPage = () => {
   };
 
   return (
-    <div className="p-6 my-20 max-w-xl mx-auto mt-10 bg-gradient-to-br from-green-100 via-green-200 to-green-300 rounded-2xl shadow-lg border border-green-300">
+    <div className="mx-4 p-6 my-20 max-w-xl md:mx-auto mt-10 bg-gradient-to-br from-green-100 via-green-200 to-green-300 rounded-2xl shadow-lg border border-green-300">
       <h2 className="text-2xl font-extrabold text-green-800 mb-6 text-center">
         Share a Garden Tip
       </h2>
