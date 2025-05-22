@@ -78,7 +78,7 @@ const router = createBrowserRouter([
       {
         path: "/updateTip/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/updateTips/${params.id}`),
+          fetch(`http://localhost:3000/updateTip/${params.id}`),
         Component: UpdateTip,
         hydrateFallbackElement: <Loading></Loading>,
       },

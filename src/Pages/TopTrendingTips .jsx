@@ -15,7 +15,6 @@ const TopTrendingTips = () => {
         setLoading(false);
       });
   }, []);
-  console.log(tips);
   if (loading || !tips) {
     return <Loading></Loading>;
   }
