@@ -26,33 +26,17 @@
 
 ## 📆 Installation & Setup
 
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/your-username/garden-tips-hub.git
-   ```
-
-2. **Navigate to the project directory**
-
-   ```bash
-   cd garden-tips-hub
-   ```
-
-3. **Install dependencies**
+1. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-4. **Set up environment variables**
+2. **Set up environment variables**
    Create a `.env` file and add necessary variables like Firebase config, API URLs, etc.
 
-5. **Run the development server**
+3. **Run the development server**
 
    ```bash
    npm run dev
    ```
-
-## 📅 Contributing
-
-Feel free to fork the repository and submit pull requests. Contributions are always welcome!
