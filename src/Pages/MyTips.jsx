@@ -73,11 +73,13 @@ const MyTips = () => {
         <p className="text-center text-gray-600">No tips found. Share one!</p>
       ) : (
         <div className="overflow-x-auto shadow-lg rounded-lg border border-green-300">
-          <table className="w-full text-left bg-white rounded-lg">
+          {/* Desktop Table */}
+          <table className="w-full text-left bg-white rounded-lg hidden md:table">
             <thead className="bg-green-700 text-white">
               <tr>
+                <th className="p-4 border-b">Image</th>
                 <th className="p-4 border-b">Title</th>
-                <th className="p-4 border-b hidden md:block ">Description</th>
+                <th className="p-4 border-b">Description</th>
                 <th className="p-4 border-b">Status</th>
                 <th className="p-4 border-b">Actions</th>
               </tr>
@@ -88,10 +90,17 @@ const MyTips = () => {
                   key={tip._id}
                   className="hover:bg-green-50 transition duration-150"
                 >
+                  <td className="p-4 border-b">
+                    <img
+                      src={tip.imageUrl}
+                      alt={tip.title}
+                      className="w-16 h-16 object-cover rounded-md"
+                    />
+                  </td>
                   <td className="p-4 border-b text-green-900 font-medium">
                     {tip.title}
                   </td>
-                  <td className="p-4 pb-11 hidden md:block border-b text-gray-700">
+                  <td className="p-4 pb-11 border-b text-gray-700">
                     {tip.description}
                   </td>
                   <td className="p-4 border-b">
@@ -102,7 +111,7 @@ const MyTips = () => {
                           : "bg-gray-500"
                       }`}
                     >
-                      {tip.availability === "Public" ? "Public" : "Hidden"}
+                      {tip.availability}
                     </span>
                   </td>
                   <td className="p-4 border-b space-x-2">
@@ -121,6 +130,53 @@ const MyTips = () => {
               ))}
             </tbody>
           </table>
+
+          {/* Mobile Cards */}
+          <div className="space-y-4 md:hidden">
+            {tips.map((tip) => (
+              <div
+                key={tip._id}
+                className="border border-green-300 rounded-lg p-4 shadow-sm bg-white"
+              >
+                <div className="flex gap-4 items-start">
+                  <img
+                    src={tip.imageUrl}
+                    alt={tip.title}
+                    className="w-20 h-20 object-cover rounded-md"
+                  />
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-green-800">
+                      {tip.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mt-1">
+                      {tip.description}
+                    </p>
+                    <span
+                      className={`inline-block mt-2 px-3 py-1 rounded-full text-white text-xs font-semibold ${
+                        tip.availability === "Public"
+                          ? "bg-green-600"
+                          : "bg-gray-500"
+                      }`}
+                    >
+                      {tip.availability}
+                    </span>
+                    <div className="flex mt-2 space-x-3">
+                      <FaRegEdit
+                        size={24}
+                        onClick={() => handleUpdate(tip._id)}
+                        className="cursor-pointer"
+                      />
+                      <MdDelete
+                        size={28}
+                        className="cursor-pointer"
+                        onClick={() => handleDelete(tip._id)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
