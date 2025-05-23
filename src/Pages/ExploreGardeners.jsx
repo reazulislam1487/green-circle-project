@@ -73,7 +73,7 @@ const ExploreGardeners = () => {
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:3000/exploreGardeners")
+    fetch("https://a10-server-sandy.vercel.app/exploreGardeners")
       .then((res) => res.json())
       .then((data) => {
         setGardeners(data);

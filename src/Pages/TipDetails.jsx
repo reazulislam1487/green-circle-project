@@ -12,7 +12,7 @@ const TipDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/browseTips/${id}`)
+    fetch(`https://a10-server-sandy.vercel.app/browseTips/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTip(data);
@@ -25,7 +25,7 @@ const TipDetails = () => {
   }, [id]);
 
   const handleLike = () => {
-    fetch(`http://localhost:3000/browseTips/${id}`, {
+    fetch(`https://a10-server-sandy.vercel.app/browseTips/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

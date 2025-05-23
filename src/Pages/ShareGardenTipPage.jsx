@@ -29,7 +29,7 @@ const ShareGardenTipPage = () => {
       userEmail: user.email,
       userName: user.displayName || user.name,
     };
-    fetch("http://localhost:3000/shareGardenTipPage", {
+    fetch("https://a10-server-sandy.vercel.app/shareGardenTipPage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

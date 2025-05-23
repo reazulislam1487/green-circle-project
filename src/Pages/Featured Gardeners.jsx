@@ -7,7 +7,7 @@ const FeaturedGardeners = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/gardeners")
+    fetch("https://a10-server-sandy.vercel.app/gardeners")
       .then((res) => res.json())
       .then((data) => {
         setGardenerProfiles(data);

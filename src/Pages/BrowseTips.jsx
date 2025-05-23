@@ -11,7 +11,7 @@ const BrowseTips = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/browseTips?difficultyFilterParams=${difficultyFilter}`
+      `https://a10-server-sandy.vercel.app/browseTips?difficultyFilterParams=${difficultyFilter}`
     )
       .then((res) => res.json())
       .then((data) => {

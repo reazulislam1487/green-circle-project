@@ -16,7 +16,7 @@ const MyTips = () => {
   useEffect(() => {
     if (!user) return;
 
-    fetch(`http://localhost:3000/myTips?email=${user.email}`)
+    fetch(`https://a10-server-sandy.vercel.app/myTips?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setTips(data);
@@ -35,7 +35,7 @@ const MyTips = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/tips/${id}`, {
+        fetch(`https://a10-server-sandy.vercel.app/tips/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

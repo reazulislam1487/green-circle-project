@@ -67,7 +67,7 @@ const router = createBrowserRouter([
       {
         path: "browseTips/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/browseTips/${params.id}`),
+          fetch(`https://a10-server-sandy.vercel.app/${params.id}`),
         element: (
           <PrivateRoutes>
             <TipDetails />
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
       {
         path: "/updateTip/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/updateTip/${params.id}`),
+          fetch(`https://a10-server-sandy.vercel.app/updateTip/${params.id}`),
         Component: UpdateTip,
         hydrateFallbackElement: <Loading></Loading>,
       },

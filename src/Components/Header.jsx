@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
+
 import Swal from "sweetalert2";
 import userPic from "/images.png";
 import { AuthContext } from "../Context/AuthContext";
@@ -41,7 +42,7 @@ const Header = () => {
   return (
     <div>
       <div>
-        <nav className="navbar w-full lg:px-10 lg:py-4 mx-auto bg-green-900 shadow-md">
+        <nav className=" navbar w-full  lg:px-10 lg:py-4 mx-auto bg-green-900 shadow-md">
           <div className="navbar-start">
             <div className="dropdown">
               <div

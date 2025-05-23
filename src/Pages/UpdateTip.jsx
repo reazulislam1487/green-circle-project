@@ -46,7 +46,7 @@ const UpdateTip = () => {
       userEmail: formData.userEmail,
     };
     console.log(updatedData);
-    fetch(`http://localhost:3000/updatedTip/${id}`, {
+    fetch(`https://a10-server-sandy.vercel.app/updatedTip/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

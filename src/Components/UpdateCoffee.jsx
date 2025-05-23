@@ -20,7 +20,7 @@ const UpdateCoffee = () => {
     //   photo: form.photo.value,
     // };
 
-    fetch(`http://localhost:3000/coffees/${_id}`, {
+    fetch(`https://a10-server-sandy.vercel.app/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

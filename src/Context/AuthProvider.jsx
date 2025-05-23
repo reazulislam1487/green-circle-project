@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
@@ -18,6 +16,8 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loader, setLoader] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+
   // console.log(user);
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
@@ -49,6 +49,12 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  useEffect(() => {
+    document
+      .getElementById("themeRoot")
+      .setAttribute("data-theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
   const authData = {
     user,
     loader,
@@ -58,6 +64,8 @@ const AuthProvider = ({ children }) => {
     signUpGoogle,
     userUpdate,
     userLogOut,
+    isDark,
+    setIsDark,
   };
 
   return (
