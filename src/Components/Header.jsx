@@ -88,18 +88,22 @@ const Header = () => {
                 >
                   browseTips{" "}
                 </NavLink>
-                <NavLink
-                  to="/shareGardenTipPage"
-                  className="mt-1 hover:bg-green-700 rounded px-2 py-1"
-                >
-                  Share a Garden Tip
-                </NavLink>
-                <NavLink
-                  to="/myTips"
-                  className="mt-1 hover:bg-green-700 rounded px-2 py-1"
-                >
-                  My Tips
-                </NavLink>
+                {user && (
+                  <NavLink
+                    to="/shareGardenTipPage"
+                    className="mt-1 hover:bg-green-700 rounded px-2 py-1"
+                  >
+                    Share a Garden Tip
+                  </NavLink>
+                )}
+                {user && (
+                  <NavLink
+                    to="/myTips"
+                    className="mt-1 hover:bg-green-700 rounded px-2 py-1"
+                  >
+                    My Tips
+                  </NavLink>
+                )}
               </ul>
             </div>
             <img
