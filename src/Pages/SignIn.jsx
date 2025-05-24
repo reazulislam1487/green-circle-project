@@ -36,14 +36,14 @@ const SignIn = () => {
       <div className="card-body">
         <h1 className="text-5xl font-bold">Sign In</h1>
         <form onSubmit={handleSignIn} className="fieldset">
-          <label className="label">Email</label>
+          <label className="label text-black">Email</label>
           <input
             type="email"
             name="email"
             className="input"
             placeholder="Email"
           />
-          <label className="label">Password</label>
+          <label className="label text-black">Password</label>
           <input
             type="password"
             name="password"

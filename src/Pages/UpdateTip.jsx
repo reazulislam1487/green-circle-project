@@ -77,7 +77,7 @@ const UpdateTip = () => {
         Update Garden Tip
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5 text-green-500">
         <div>
           <label className="block mb-1 text-green-900 font-medium">Title</label>
           <input
@@ -123,7 +123,7 @@ const UpdateTip = () => {
         </div>
 
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="block mb-1 text-accent font-medium">
             Description
           </label>
           <textarea

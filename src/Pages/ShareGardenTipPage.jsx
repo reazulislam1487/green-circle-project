@@ -68,11 +68,11 @@ const ShareGardenTipPage = () => {
 
   return (
     <div className="max-w-3xl my-20 mx-auto p-6 bg-white shadow-md rounded-lg border border-green-200">
-      <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">
+      <h2 className="text-3xl font-bold text-green-600 mb-8 text-center">
         Share a Garden Tip
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5 text-green-500 ">
         <div>
           <label className="block mb-1 text-green-900 font-medium">Title</label>
           <input
@@ -81,7 +81,7 @@ const ShareGardenTipPage = () => {
             value={formData.title}
             onChange={handleChange}
             placeholder="How I Grow Tomatoes Indoors"
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full  px-4 py-2  border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
             required
           />
         </div>
@@ -109,7 +109,7 @@ const ShareGardenTipPage = () => {
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full px-4  py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
           >
             <option>Easy</option>
             <option>Medium</option>

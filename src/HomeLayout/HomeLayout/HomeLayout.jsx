@@ -4,24 +4,24 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import { AuthContext } from "../../Context/AuthContext";
 import { MdDarkMode } from "react-icons/md";
-import { FaToggleOff, FaToggleOn } from "react-icons/fa";
+// import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
 const HomeLayout = () => {
   const { isDark, setIsDark } = useContext(AuthContext);
 
   return (
     <div>
-      <main id="themeRoot">
+      <main>
         <header className="relative">
           <Header></Header>
           {isDark ? (
-            <FaToggleOff
+            <MdDarkMode
               size={24}
               className="absolute top-5 right-24 md:top-4 md:right-32 "
               onClick={() => setIsDark(!isDark)}
             />
           ) : (
-            <FaToggleOn
+            <MdDarkMode
               size={24}
               className="absolute top-5 right-24 md:top-4 md:right-32"
               onClick={() => setIsDark(!isDark)}

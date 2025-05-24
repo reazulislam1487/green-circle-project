@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-900 pt-30 text-green-200 py-10 px-6 md:px-20">
+    <footer className="bg-gradient-to-r from-green-800 via-green-600 to-green-900 pt-30 text-green-200 py-10 px-6 md:px-20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
         {/* Contact Info */}
         <div className="flex-1">

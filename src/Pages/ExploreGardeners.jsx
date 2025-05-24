@@ -91,7 +91,7 @@ const ExploreGardeners = () => {
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {gardeners.map((gardener) => (
           <div
-            key={gardener.id}
+            key={gardener._id}
             className="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition"
           >
             <img

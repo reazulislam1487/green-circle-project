@@ -42,7 +42,7 @@ const Header = () => {
   return (
     <div>
       <div>
-        <nav className=" navbar w-full  lg:px-10 lg:py-4 mx-auto bg-green-900 shadow-md">
+        <nav className=" navbar w-full lg:px-10 lg:py-4 mx-auto bg-gradient-to-r from-green-800 via-green-600 to-green-900 shadow-md">
           <div className="navbar-start">
             <div className="dropdown">
               <div

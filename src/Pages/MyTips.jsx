@@ -65,7 +65,7 @@ const MyTips = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto min-h-[calc(100vh-10rem)]">
-      <h2 className="text-3xl font-bold text-center mb-8 text-green-800">
+      <h2 className="text-3xl font-bold text-center mb-8 text-secondary">
         My Garden Tips
       </h2>
 
@@ -118,11 +118,11 @@ const MyTips = () => {
                     <FaRegEdit
                       size={20}
                       onClick={() => handleUpdate(tip._id)}
-                      className="cursor-pointer mb-2"
+                      className="cursor-pointer text-green-500  mb-2"
                     />
                     <MdDelete
                       size={22}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-green-500"
                       onClick={() => handleDelete(tip._id)}
                     />
                   </td>

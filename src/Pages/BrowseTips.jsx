@@ -26,17 +26,17 @@ const BrowseTips = () => {
 
   return (
     <div className="p-3 md:p-6 max-w-6xl mb-20 mx-auto  min-h-[calc(100vh-10rem)]">
-      <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
+      <h2 className="text-3xl font-bold  text-secondary text-center mb-8">
         Browse Garden Tips
       </h2>
       <div className="mb-4">
-        <label className="mr-2 font-medium text-gray-700">
+        <label className="mr-2 font-medium text-secondary">
           Filter by Difficulty:
         </label>
         <select
           value={difficultyFilter}
           onChange={(e) => setDifficultyFilter(e.target.value)}
-          className="p-2 border rounded-md"
+          className="p-2 border rounded-md text-secondary"
         >
           <option value="Easy">Easy</option>
           <option value="Medium">Medium</option>
