@@ -19,7 +19,6 @@ const TipDetails = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching tip:", error);
         setLoading(false);
       });
   }, [id]);
@@ -42,7 +41,6 @@ const TipDetails = () => {
         });
       })
       .catch((error) => {
-        console.error("Error updating like status:", error);
       });
     setLiked(!liked);
   };

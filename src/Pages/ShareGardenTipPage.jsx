@@ -63,7 +63,6 @@ const ShareGardenTipPage = () => {
           });
         }
       });
-    // console.log("Submitted Tip:", data);
   };
 
   return (

@@ -50,7 +50,6 @@ const MyTips = () => {
             }
           })
           .catch((error) => {
-            console.error("Error deleting tip:", error);
             Swal.fire("Error", "Something went wrong while deleting.", "error");
           });
       }

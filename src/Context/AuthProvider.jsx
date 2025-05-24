@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
   const [loader, setLoader] = useState(true);
   const [isDark, setIsDark] = useState(false);
 
-  // console.log(user);
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);

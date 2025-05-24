@@ -8,7 +8,6 @@ import { AuthContext } from "../Context/AuthContext";
 const Header = () => {
   const { user, userLogOut } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(user);
 
   const handleLogout = () => {
     Swal.fire({

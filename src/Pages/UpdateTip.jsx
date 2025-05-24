@@ -45,7 +45,6 @@ const UpdateTip = () => {
       userName: formData.userName,
       userEmail: formData.userEmail,
     };
-    console.log(updatedData);
     fetch(`https://a10-server-sandy.vercel.app/updatedTip/${id}`, {
       method: "PUT",
       headers: {
@@ -55,7 +54,6 @@ const UpdateTip = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire("Updated!", "Your tip has been updated.", "success").then(
             () => {
@@ -67,8 +65,7 @@ const UpdateTip = () => {
         }
       })
       .catch((err) => {
-        Swal.fire("Error!", "Failed to update the tip.", "error");
-        console.error("Update error:", err);
+        Swal.fire("Error!", "Failed to update the tip.", err);
       });
   };
   return (
