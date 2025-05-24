@@ -20,6 +20,7 @@ const SignIn = () => {
           title: "Good job!",
           text: "Login successful",
           icon: "success",
+          timer: 1500,
         });
         navigate(`${location.state ? location.state : "/"}`);
       })

@@ -1,13 +1,14 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import SoicalLogin from "../Components/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser } = use(AuthContext);
+  const { createUser, userUpdate, setUser } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const nagivate = useNavigate();
 
   const [error, setError] = useState("");
 
@@ -18,8 +19,6 @@ const SignUp = () => {
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    console.log({ name, email, photo, password });
-    // password Validation
     if (password.length < 8) {
       setError("Password must be at least 8 characters long.");
       return;
@@ -39,14 +38,22 @@ const SignUp = () => {
       return;
     }
     setError("");
-
     createUser(email, password)
-      .then(() => {
-        Swal.fire({
-          title: ` Good job!`,
-          text: "Registration Successful",
-          icon: "success",
-        });
+      .then((userCredential) => {
+        const user = userCredential.user;
+        userUpdate({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+            Swal.fire({
+              title: "Good job!",
+              text: "Registration Successful",
+              icon: "success",
+              timer: 1500,
+            });
+            nagivate("/");
+          })
+          .catch(() => {});
+        // ...
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -62,7 +69,7 @@ const SignUp = () => {
       <div className="card-body">
         <h1 className="text-5xl font-bold">Sign Up</h1>
         <form onSubmit={handleSignUp} className="fieldset">
-          <label className="label">Name</label>
+          <label className="label text-black">Name</label>
           <input
             type="Text"
             name="name"
@@ -70,22 +77,22 @@ const SignUp = () => {
             placeholder="Name"
             required
           />
-          <label className="label">Email</label>
+          <label className="label text-black">Email</label>
           <input
             type="email"
             name="email"
             className="input"
             placeholder="Email"
           />
-          <label className="label">Photo Url </label>
+          <label className="label text-black">Photo Url </label>
           <input
-            type="text"
+            type="url"
             name="photo"
             className="input"
             placeholder="Photo Url"
             required
           />
-          <label className="label"> Password </label>
+          <label className="label text-black"> Password </label>
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
