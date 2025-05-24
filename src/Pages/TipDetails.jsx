@@ -23,7 +23,7 @@ const TipDetails = () => {
         setLoading(false);
       });
   }, [id]);
-
+// for like
   const handleLike = () => {
     fetch(`https://a10-server-sandy.vercel.app/browseTips/${id}`, {
       method: "PATCH",

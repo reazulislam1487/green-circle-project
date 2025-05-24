@@ -1,5 +1,6 @@
 import React from "react";
 import { FaLeaf, FaHandsHelping, FaCalendarAlt } from "react-icons/fa";
+import { Slide } from "react-awesome-reveal";
 
 const Tips = () => {
   return (
@@ -14,50 +15,56 @@ const Tips = () => {
         </p>
         <div className="grid md:grid-cols-3 gap-8">
           {/* Feature 1 */}
-          <div className="bg-green-50 hover:bg-green-100 transition rounded-2xl shadow-lg p-6 text-center">
-            <div className="flex justify-center mb-4">
-              <FaLeaf className="text-green-700 w-10 h-10" />
+          <Slide direction="up" cascade damping={0.3} triggerOnce>
+            <div className="bg-green-50 hover:bg-green-100 transition rounded-2xl shadow-lg p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <FaLeaf className="text-green-700 w-10 h-10" />
+              </div>
+              <h3 className="text-xl font-semibold text-green-900 mb-2">
+                Community Tips
+              </h3>
+              <p className="text-gray-700 text-sm">
+                Share and explore <strong>gardening hacks</strong>,{" "}
+                <strong>plant care advice</strong>, and{" "}
+                <strong>seasonal tips</strong> from passionate members across
+                the country.
+              </p>
             </div>
-            <h3 className="text-xl font-semibold text-green-900 mb-2">
-              Community Tips
-            </h3>
-            <p className="text-gray-700 text-sm">
-              Share and explore <strong>gardening hacks</strong>,{" "}
-              <strong>plant care advice</strong>, and{" "}
-              <strong>seasonal tips</strong> from passionate members across the
-              country.
-            </p>
-          </div>
+          </Slide>
 
           {/* Feature 2 */}
-          <div className="bg-green-50 hover:bg-green-100 transition rounded-2xl shadow-lg p-6 text-center">
-            <div className="flex justify-center mb-4">
-              <FaCalendarAlt className="text-green-700 w-10 h-10" />
+          <Slide direction="up" cascade damping={0.3} delay={150} triggerOnce>
+            <div className="bg-green-50 hover:bg-green-100 transition rounded-2xl shadow-lg p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <FaCalendarAlt className="text-green-700 w-10 h-10" />
+              </div>
+              <h3 className="text-xl font-semibold text-green-900 mb-2">
+                Events & Meetups
+              </h3>
+              <p className="text-gray-700 text-sm">
+                Find or host <strong>local gardening events</strong>, join{" "}
+                <strong>community plant swaps</strong>, or attend{" "}
+                <strong>hands-on workshops</strong> near you.
+              </p>
             </div>
-            <h3 className="text-xl font-semibold text-green-900 mb-2">
-              Events & Meetups
-            </h3>
-            <p className="text-gray-700 text-sm">
-              Find or host <strong>local gardening events</strong>, join{" "}
-              <strong>community plant swaps</strong>, or attend{" "}
-              <strong>hands-on workshops</strong> near you.
-            </p>
-          </div>
+          </Slide>
 
           {/* Feature 3 */}
-          <div className="bg-green-50 hover:bg-green-100 transition rounded-2xl shadow-lg p-6 text-center">
-            <div className="flex justify-center mb-4">
-              <FaHandsHelping className="text-green-700 w-10 h-10" />
+          <Slide direction="up" cascade damping={0.3} delay={300} triggerOnce>
+            <div className="bg-green-50 hover:bg-green-100 transition rounded-2xl shadow-lg p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <FaHandsHelping className="text-green-700 w-10 h-10" />
+              </div>
+              <h3 className="text-xl font-semibold text-green-900 mb-2">
+                Ask & Learn
+              </h3>
+              <p className="text-gray-700 text-sm">
+                Post your <strong>plant care questions</strong>, join expert
+                discussions, and build your knowledge from real-life gardener
+                experiences.
+              </p>
             </div>
-            <h3 className="text-xl font-semibold text-green-900 mb-2">
-              Ask & Learn
-            </h3>
-            <p className="text-gray-700 text-sm">
-              Post your <strong>plant care questions</strong>, join expert
-              discussions, and build your knowledge from real-life gardener
-              experiences.
-            </p>
-          </div>
+          </Slide>
         </div>
       </div>
     </section>
