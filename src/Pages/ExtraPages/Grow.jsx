@@ -29,7 +29,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Grow = () => {
   return (
-    <section className="mt-20 bg-gradient-to-r from-green-700 via-lime-500 to-green-600 py-20 px-4 md:px-8 text-white">
+    <section className="mt-10 bg-gradient-to-r from-green-700 via-lime-500 to-green-600 py-20 px-4 md:px-8 text-white">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight drop-shadow-lg">
           <Typewriter

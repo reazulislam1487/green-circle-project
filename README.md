@@ -1,6 +1,6 @@
 # GreenCircle
 
-**Live Site:** [https://your-deployed-site-url.com](https://your-deployed-site-url.com)
+**Live Site:** https://projects-assignment-10.web.app/
 
 ## 📋 Project Description
 
