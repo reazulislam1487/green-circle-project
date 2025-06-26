@@ -16,9 +16,13 @@ import BrowseTips from "./Pages/BrowseTips.jsx";
 import TipDetails from "./Pages/TipDetails.jsx";
 import PrivateRoutes from "./Context/PrivateRoutes.jsx";
 import MyTips from "./Pages/MyTips.jsx";
+import MyDashboard from "./Pages/Dashboard.jsx";
 import Loading from "./Components/Loading.jsx";
 import UpdateTip from "./Pages/UpdateTip.jsx";
 import ExploreGardeners from "./Pages/ExploreGardeners.jsx";
+import AboutUs from "./Pages/AboutUs.jsx";
+import ContactUs from "./Pages/ContactUs.jsx";
+import Dashboard from "./DashboadLayout/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,12 +43,12 @@ const router = createBrowserRouter([
         Component: SignUp,
       },
       {
-        path: "shareGardenTipPage",
-        element: (
-          <PrivateRoutes>
-            <ShareGardenTipPage />
-          </PrivateRoutes>
-        ),
+        path: "aboutUs",
+        Component: AboutUs,
+      },
+      {
+        path: "contactUs",
+        Component: ContactUs,
       },
       {
         path: "exploreGardeners",
@@ -53,15 +57,6 @@ const router = createBrowserRouter([
       {
         path: "browseTips",
         Component: BrowseTips,
-        hydrateFallbackElement: <Loading></Loading>,
-      },
-      {
-        path: "myTips",
-        element: (
-          <PrivateRoutes>
-            <MyTips />
-          </PrivateRoutes>
-        ),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -80,6 +75,38 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://a10-server-sandy.vercel.app/updateTip/${params.id}`),
         Component: UpdateTip,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    Component: Dashboard,
+    children: [
+      {
+        path: "/dashboard",
+        Component: MyDashboard,
+      },
+      {
+        path: "/dashboard/myTips",
+        element: (
+          <PrivateRoutes>
+            <MyTips />
+          </PrivateRoutes>
+        ),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/dashboard/shareGardenTipPage",
+        element: (
+          <PrivateRoutes>
+            <ShareGardenTipPage />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/browseTips",
+        Component: BrowseTips,
         hydrateFallbackElement: <Loading></Loading>,
       },
     ],

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
-// import your JSON file
+import { motion } from "framer-motion";
 
 const FeaturedGardeners = () => {
   const [gardenerProfiles, setGardenerProfiles] = useState([]);
@@ -14,28 +14,47 @@ const FeaturedGardeners = () => {
         setLoading(false);
       });
   }, []);
+
   if (loading || !gardenerProfiles) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  };
+
   return (
-    <section className=" max-w-6xl mx-auto p-6 my-20 bg-green-50 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-green-800">
-        Featured Gardeners
+    <section className="max-w-7xl mx-auto px-6 py-24 bg-[#F3FDF7] rounded-3xl shadow-inner">
+      <h2 className="text-5xl font-extrabold text-center text-[#2F855A] mb-16 tracking-tight drop-shadow-md">
+        🌿 Featured Gardeners
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {gardenerProfiles.map(({ id, name, photo, bio }) => (
-          <div
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        {gardenerProfiles.map(({ id, name, photo, bio }, index) => (
+          <motion.div
             key={id}
-            className="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center"
+            className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl border border-[#E2F3EA] hover:border-[#A0DAB6] transition-all duration-300"
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
           >
-            <img
-              src={photo}
-              alt={name}
-              className="w-24 h-24 rounded-full object-cover mb-3"
-            />
-            <h3 className="font-semibold text-lg text-green-900">{name}</h3>
-            <p className="text-green-700 text-sm mt-2">{bio}</p>
-          </div>
+            <div className="w-28 h-28 rounded-full overflow-hidden ring-4 ring-[#F6C26B] mb-6 shadow-md">
+              <img
+                src={photo}
+                alt={name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h3 className="text-2xl font-bold text-[#2D3748] mb-2 tracking-wide">
+              {name}
+            </h3>
+            <p className="text-[#4A5568] text-base leading-relaxed px-3">
+              {bio}
+            </p>
+          </motion.div>
         ))}
       </div>
     </section>

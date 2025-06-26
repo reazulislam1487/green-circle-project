@@ -1,6 +1,15 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import {
+  MdTitle,
+  MdOutlineCategory,
+  MdPublic,
+  MdLock,
+  MdDescription,
+} from "react-icons/md";
+import { GiPlantRoots } from "react-icons/gi";
+import { FaSeedling, FaUser, FaEnvelope, FaImage } from "react-icons/fa";
 
 const ShareGardenTipPage = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +22,7 @@ const ShareGardenTipPage = () => {
     category: "Composting",
     availability: "Public",
   });
-  // start function
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -56,7 +65,7 @@ const ShareGardenTipPage = () => {
           });
         } else {
           Swal.fire({
-            icon: "success",
+            icon: "error",
             title: "Failed to submit tip. Please try again.",
             showConfirmButton: false,
             timer: 1500,
@@ -72,21 +81,27 @@ const ShareGardenTipPage = () => {
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-5 text-green-500 ">
+        {/* Title */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">Title</label>
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <MdTitle className="text-green-700" />
+            Title
+          </label>
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
             placeholder="How I Grow Tomatoes Indoors"
-            className="w-full  px-4 py-2  border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
             required
           />
         </div>
 
+        {/* Plant Type */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <GiPlantRoots className="text-green-700" />
             Plant Type/Topic
           </label>
           <input
@@ -100,15 +115,17 @@ const ShareGardenTipPage = () => {
           />
         </div>
 
+        {/* Difficulty Level */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <FaSeedling className="text-green-700" />
             Difficulty Level
           </label>
           <select
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
-            className="w-full px-4  py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
           >
             <option>Easy</option>
             <option>Medium</option>
@@ -116,8 +133,10 @@ const ShareGardenTipPage = () => {
           </select>
         </div>
 
+        {/* Description */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <MdDescription className="text-green-700" />
             Description
           </label>
           <textarea
@@ -131,8 +150,10 @@ const ShareGardenTipPage = () => {
           ></textarea>
         </div>
 
+        {/* Image URL */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <FaImage className="text-green-700" />
             Image URL
           </label>
           <input
@@ -145,8 +166,10 @@ const ShareGardenTipPage = () => {
           />
         </div>
 
+        {/* Category */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <MdOutlineCategory className="text-green-700" />
             Category
           </label>
           <select
@@ -161,8 +184,14 @@ const ShareGardenTipPage = () => {
           </select>
         </div>
 
+        {/* Availability */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            {formData.availability === "Public" ? (
+              <MdPublic className="text-green-700" />
+            ) : (
+              <MdLock className="text-green-700" />
+            )}
             Availability
           </label>
           <select
@@ -176,8 +205,10 @@ const ShareGardenTipPage = () => {
           </select>
         </div>
 
+        {/* User Name */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <FaUser className="text-green-700" />
             Your Name
           </label>
           <input
@@ -188,8 +219,10 @@ const ShareGardenTipPage = () => {
           />
         </div>
 
+        {/* User Email */}
         <div>
-          <label className="block mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+            <FaEnvelope className="text-green-700" />
             Your Email
           </label>
           <input
@@ -208,274 +241,6 @@ const ShareGardenTipPage = () => {
         </button>
       </form>
     </div>
-
-    // <div className="mx-4 p-6 my-20 max-w-xl md:mx-auto mt-10 bg-gradient-to-br from-green-100 via-green-200 to-green-300 rounded-2xl shadow-lg border border-green-300">
-    //   <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">
-    //     Share a Garden Tip
-    //   </h2>
-
-    //   <form onSubmit={handleSubmit} className="space-y-5">
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">Title</label>
-    //       <input
-    //         type="text"
-    //         name="title"
-    //         value={formData.title}
-    //         onChange={handleChange}
-    //         placeholder="How I Grow Tomatoes Indoors"
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //         required
-    //       />
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Plant Type/Topic
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="plantType"
-    //         value={formData.plantType}
-    //         onChange={handleChange}
-    //         placeholder="Tomatoes, Herbs, etc."
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //         required
-    //       />
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Difficulty Level
-    //       </label>
-    //       <select
-    //         name="difficulty"
-    //         value={formData.difficulty}
-    //         onChange={handleChange}
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //       >
-    //         <option>Easy</option>
-    //         <option>Medium</option>
-    //         <option>Hard</option>
-    //       </select>
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Description
-    //       </label>
-    //       <textarea
-    //         name="description"
-    //         value={formData.description}
-    //         onChange={handleChange}
-    //         placeholder="Write your gardening tip here..."
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //         rows={4}
-    //         required
-    //       ></textarea>
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Image URL
-    //       </label>
-    //       <input
-    //         type="url"
-    //         name="imageUrl"
-    //         value={formData.imageUrl}
-    //         onChange={handleChange}
-    //         placeholder="https://example.com/image.jpg"
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //       />
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Category
-    //       </label>
-    //       <select
-    //         name="category"
-    //         value={formData.category}
-    //         onChange={handleChange}
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //       >
-    //         <option>Composting</option>
-    //         <option>Plant Care</option>
-    //         <option>Vertical Gardening</option>
-    //       </select>
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Availability
-    //       </label>
-    //       <select
-    //         name="availability"
-    //         value={formData.availability}
-    //         onChange={handleChange}
-    //         className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-    //       >
-    //         <option>Public</option>
-    //         <option>Hidden</option>
-    //       </select>
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Your Name
-    //       </label>
-    //       <input
-    //         type="text"
-    //         value={user?.displayName || user?.name || ""}
-    //         readOnly
-    //         className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700 cursor-not-allowed"
-    //       />
-    //     </div>
-
-    //     <div>
-    //       <label className="block mb-1 text-green-900 font-medium">
-    //         Your Email
-    //       </label>
-    //       <input
-    //         type="email"
-    //         value={user?.email || ""}
-    //         readOnly
-    //         className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700 cursor-not-allowed"
-    //       />
-    //     </div>
-
-    //     <button
-    //       type="submit"
-    //       className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition duration-200"
-    //     >
-    //       Submit Tip
-    //     </button>
-    //   </form>
-    // </div>
-
-    // <div className="mx-4 p-6 my-20 max-w-xl md:mx-auto mt-10 bg-gradient-to-br from-green-100 via-green-200 to-green-300 rounded-2xl shadow-lg border border-green-300">
-    //   <h2 className="text-2xl font-extrabold text-green-800 mb-6 text-center">
-    //     Share a Garden Tip
-    //   </h2>
-    //   <form onSubmit={handleSubmit} className="space-y-4">
-    //     <div>
-    //       <label className="label text-green-900 font-medium">Title</label>
-    //       <input
-    //         type="text"
-    //         name="title"
-    //         value={formData.title}
-    //         onChange={handleChange}
-    //         placeholder="How I Grow Tomatoes Indoors"
-    //         className="input input-bordered w-full bg-white"
-    //         required
-    //       />
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">
-    //         Plant Type/Topic
-    //       </label>
-    //       <input
-    //         type="text"
-    //         name="plantType"
-    //         value={formData.plantType}
-    //         onChange={handleChange}
-    //         placeholder="Tomatoes, Herbs, etc."
-    //         className="input input-bordered w-full bg-white"
-    //         required
-    //       />
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">
-    //         Difficulty Level
-    //       </label>
-    //       <select
-    //         name="difficulty"
-    //         value={formData.difficulty}
-    //         onChange={handleChange}
-    //         className="select select-bordered w-full bg-white"
-    //       >
-    //         <option>Easy</option>
-    //         <option>Medium</option>
-    //         <option>Hard</option>
-    //       </select>
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">
-    //         Description
-    //       </label>
-    //       <textarea
-    //         name="description"
-    //         value={formData.description}
-    //         onChange={handleChange}
-    //         placeholder="Write your gardening tip here..."
-    //         className="textarea textarea-bordered w-full bg-white"
-    //         rows={4}
-    //         required
-    //       ></textarea>
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">Image URL</label>
-    //       <input
-    //         type="url"
-    //         name="imageUrl"
-    //         value={formData.imageUrl}
-    //         onChange={handleChange}
-    //         placeholder="https://example.com/image.jpg"
-    //         className="input input-bordered w-full bg-white"
-    //       />
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">Category</label>
-    //       <select
-    //         name="category"
-    //         value={formData.category}
-    //         onChange={handleChange}
-    //         className="select select-bordered w-full bg-white"
-    //       >
-    //         <option>Composting</option>
-    //         <option>Plant Care</option>
-    //         <option>Vertical Gardening</option>
-    //       </select>
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">
-    //         Availability
-    //       </label>
-    //       <select
-    //         name="availability"
-    //         value={formData.availability}
-    //         onChange={handleChange}
-    //         className="select select-bordered w-full bg-white"
-    //       >
-    //         <option>Public</option>
-    //         <option>Hidden</option>
-    //       </select>
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">Your Name</label>
-    //       <input
-    //         type="text"
-    //         value={user?.displayName || user?.name || ""}
-    //         readOnly
-    //         className="input input-disabled w-full bg-gray-100"
-    //       />
-    //     </div>
-    //     <div>
-    //       <label className="label text-green-900 font-medium">Your Email</label>
-    //       <input
-    //         type="email"
-    //         value={user?.email || ""}
-    //         readOnly
-    //         className="input input-disabled w-full bg-gray-100"
-    //       />
-    //     </div>
-    //     <button
-    //       type="submit"
-    //       className="btn bg-green-600 hover:bg-green-700 text-white w-full font-semibold"
-    //     >
-    //       Submit Tip
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 

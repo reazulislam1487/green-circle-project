@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router";
-import Header from "../../Components/Header";
+import Banners from "../../Components/Banners";
 import Footer from "../../Components/Footer";
 import { AuthContext } from "../../Context/AuthContext";
 import { MdDarkMode } from "react-icons/md";
@@ -13,7 +13,7 @@ const HomeLayout = () => {
     <div>
       <main>
         <header className="relative">
-          <Header></Header>
+          <Banners></Banners>
           {isDark ? (
             <MdDarkMode
               size={24}
