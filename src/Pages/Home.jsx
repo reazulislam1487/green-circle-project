@@ -5,6 +5,7 @@ import FeaturedGardeners from "./Featured Gardeners";
 import TopTrendingTips from "./TopTrendingTips ";
 import Grow from "./ExtraPages/Grow";
 import FAQSection from "./ExtraPages/FAQSection";
+import WhyJoin from "./ExtraPages/WhyJoin";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <FeaturedGardeners></FeaturedGardeners>
       <TopTrendingTips></TopTrendingTips>
       <FAQSection></FAQSection>
+      <WhyJoin></WhyJoin>
       <Grow></Grow>
     </div>
   );

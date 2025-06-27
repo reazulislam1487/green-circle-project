@@ -34,7 +34,7 @@ const FAQSection = () => {
 
   return (
     <section className="py-20 bg-[#F9F9F6]">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 md:px-10 items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 lg:px-0  items-center">
         {/* Left image area */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -56,7 +56,7 @@ const FAQSection = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl font-extrabold text-[#2F855A] mb-10 text-center md:text-left"
           >
-          Frequently Asked Questions
+            Frequently Asked Questions
           </motion.h2>
 
           <div className="space-y-6">

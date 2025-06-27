@@ -13,7 +13,7 @@ const items = [
   },
   {
     image:
-      "https://thumbs.dreamstime.com/b/landscaping-industry-worker-professional-gardener-job-satisfied-caucasian-garden-his-s-relaxing-mid-day-work-break-154984471.jpg",
+      "https://i.postimg.cc/28P7ZV0d/Feature-how-to-find-a-local-gardener.jpg",
     title: "Nadia Rahman",
     subtitle: "Hydroponics Specialist",
     handle: "@nadiahydro",
