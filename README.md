@@ -1,6 +1,8 @@
 # GreenCircle
 
-**Live Site:** https://projects-assignment-10.web.app/
+**Live Site:** https://green-circle-by-reaz.netlify.app
+**Client Repo:** https://github.com/reazulislam1487/green-circle-project
+**Server Repo:** https://github.com/reazulislam1487/green-circle-project-server
 
 ## 📋 Project Description
 
