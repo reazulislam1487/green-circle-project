@@ -1,7 +1,7 @@
 # GreenCircle
 
-**Live Site:** https://green-circle-by-reaz.netlify.app
-**Client Repo:** https://github.com/reazulislam1487/green-circle-project
+**Live Site:** https://green-circle-by-reaz.netlify.app ,
+**Client Repo:** https://github.com/reazulislam1487/green-circle-project,
 **Server Repo:** https://github.com/reazulislam1487/green-circle-project-server
 
 ## 📋 Project Description
