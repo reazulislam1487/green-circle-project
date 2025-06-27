@@ -6,7 +6,6 @@ import Loading from "../Components/Loading";
 const UpdateTip = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const data = useLoaderData();
 
   const defaultTip = {
@@ -34,6 +33,7 @@ const UpdateTip = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const updatedData = {
       title: formData.title,
       plantType: formData.plantType,
@@ -45,6 +45,7 @@ const UpdateTip = () => {
       userName: formData.userName,
       userEmail: formData.userEmail,
     };
+
     fetch(`https://a10-server-sandy.vercel.app/updatedTip/${id}`, {
       method: "PUT",
       headers: {
@@ -57,7 +58,7 @@ const UpdateTip = () => {
         if (data.modifiedCount > 0) {
           Swal.fire("Updated!", "Your tip has been updated.", "success").then(
             () => {
-              navigate("/myTips");
+              navigate("/dashboard/myTips");
             }
           );
         } else {
@@ -68,148 +69,163 @@ const UpdateTip = () => {
         Swal.fire("Error!", "Failed to update the tip.", err);
       });
   };
+
   return (
-    <div className="max-w-3xl my-20 mx-auto p-6 bg-white shadow-md rounded-lg border border-green-200">
-      <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">
-        Update Garden Tip
-      </h2>
+    <div className="max-w-4xl mx-auto my-20 p-8 bg-white border border-green-200 shadow-lg rounded-2xl">
+      <div className="">
+        <h2 className="text-4xl font-extrabold text-center text-[#2F855A] mb-10">
+          Update Garden Tip
+        </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-5 text-green-500">
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="How I Grow Tomatoes Indoors"
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-6 text-[#2D3748]">
+          {/* Title */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Tip Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+              placeholder="How I Grow Tomatoes Indoors"
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Plant Type/Topic
-          </label>
-          <input
-            type="text"
-            name="plantType"
-            value={formData.plantType}
-            onChange={handleChange}
-            placeholder="Tomatoes, Herbs, etc."
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-            required
-          />
-        </div>
+          {/* Plant Type */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Plant Type / Topic
+            </label>
+            <input
+              type="text"
+              name="plantType"
+              value={formData.plantType}
+              onChange={handleChange}
+              required
+              placeholder="Tomatoes, Herbs, etc."
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Difficulty Level
-          </label>
-          <select
-            name="difficulty"
-            value={formData.difficulty || "Easy"}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+          {/* Difficulty */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Difficulty Level
+            </label>
+            <select
+              name="difficulty"
+              value={formData.difficulty}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            >
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Tip Description
+            </label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              rows={4}
+              placeholder="Share your garden wisdom..."
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            ></textarea>
+          </div>
+
+          {/* Image URL */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Image URL
+            </label>
+            <input
+              type="url"
+              name="imageUrl"
+              value={formData.imageUrl}
+              onChange={handleChange}
+              placeholder="https://example.com/tip.jpg"
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            />
+          </div>
+
+          {/* Category */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Category
+            </label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            >
+              <option value="Composting">Composting</option>
+              <option value="Plant Care">Plant Care</option>
+              <option value="Vertical Gardening">Vertical Gardening</option>
+            </select>
+          </div>
+
+          {/* Availability */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Visibility
+            </label>
+            <select
+              name="availability"
+              value={formData.availability}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 bg-[#F9F9F6] outline-none"
+            >
+              <option value="Public">Public</option>
+              <option value="Hidden">Hidden</option>
+            </select>
+          </div>
+
+          {/* Author Name */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Your Name
+            </label>
+            <input
+              type="text"
+              value={formData.userName}
+              readOnly
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-700 cursor-not-allowed"
+            />
+          </div>
+
+          {/* Author Email */}
+          <div>
+            <label className="block mb-2 font-semibold text-[#2F855A]">
+              Your Email
+            </label>
+            <input
+              type="email"
+              value={formData.userEmail}
+              readOnly
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-700 cursor-not-allowed"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 cursor-pointer bg-[#2F855A] hover:bg-[#276749] text-white font-bold rounded-lg shadow-md transition"
           >
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-1 text-accent font-medium">
-            Description
-          </label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Write your gardening tip here..."
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-            rows={4}
-            required
-          ></textarea>
-        </div>
-
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Image URL
-          </label>
-          <input
-            type="url"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleChange}
-            placeholder="https://example.com/image.jpg"
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Category
-          </label>
-          <select
-            name="category"
-            value={formData.category || "Plant Care"}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-          >
-            <option value="Composting">Composting</option>
-            <option value="Plant Care">Plant Care</option>
-            <option value="Vertical Gardening">Vertical Gardening</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Availability
-          </label>
-          <select
-            name="availability"
-            value={formData.availability || "Public"}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-          >
-            <option value="Public">Public</option>
-            <option value="Hidden">Hidden</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Your Name
-          </label>
-          <input
-            type="text"
-            value={formData.userName}
-            readOnly
-            className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700 cursor-not-allowed"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 text-green-900 font-medium">
-            Your Email
-          </label>
-          <input
-            type="email"
-            value={formData.userEmail}
-            readOnly
-            className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700 cursor-not-allowed"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition duration-200"
-        >
-          Update Tip
-        </button>
-      </form>
+            Update Tip
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

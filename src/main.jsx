@@ -13,6 +13,7 @@ import Home from "./Pages/Home.jsx";
 import ShareGardenTipPage from "./Pages/ShareGardenTipPage.jsx";
 import NotFound from "./Pages/NotFound.jsx";
 import BrowseTips from "./Pages/BrowseTips.jsx";
+import AllTips from "./Pages/AllTips.jsx";
 import TipDetails from "./Pages/TipDetails.jsx";
 import PrivateRoutes from "./Context/PrivateRoutes.jsx";
 import MyTips from "./Pages/MyTips.jsx";
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: "browseTips",
-        Component: BrowseTips,
+        Component: AllTips,
         hydrateFallbackElement: <Loading></Loading>,
       },
       {

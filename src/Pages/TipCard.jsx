@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FiThumbsUp,
-  FiUser,
-  FiGlobe,
-  FiTag,
-  FiActivity,
-} from "react-icons/fi";
+import { FiThumbsUp, FiUser, FiGlobe, FiTag, FiActivity } from "react-icons/fi";
 
 const TipCard = React.memo(({ tip }) => {
   const iconSize = 18;

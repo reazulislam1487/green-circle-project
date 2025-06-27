@@ -18,104 +18,123 @@ const TipDetails = () => {
         setTip(data);
         setLoading(false);
       })
-      .catch((error) => {
-        setLoading(false);
-      });
+      .catch(() => setLoading(false));
   }, [id]);
-// for like
+
   const handleLike = () => {
     fetch(`https://a10-server-sandy.vercel.app/browseTips/${id}`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ likes: liked ? -1 : 1 }),
     })
       .then((res) => res.json())
       .then(() => {
         Swal.fire({
           title: "Success!",
-          text: `You ${liked ? "liked" : "liked"} this tip!`,
+          text: liked ? "Like removed!" : "You liked this tip!",
           icon: "success",
           confirmButtonText: "OK",
         });
-      })
-      .catch((error) => {
+        setTip((prev) => ({
+          ...prev,
+          totalLiked: prev.totalLiked + (liked ? -1 : 1),
+        }));
+        setLiked(!liked);
       });
-    setLiked(!liked);
   };
 
   const handleBack = () => {
     navigate(-1);
   };
 
-  if (loading || !tip) {
-    return <Loading></Loading>;
-  }
+  if (loading || !tip) return <Loading />;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-12">
       {/* Back Button */}
       <button
         onClick={handleBack}
-        className="mb-6 inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-full shadow hover:brightness-110 transition"
+        className="mb-6 cursor-pointer inline-flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full shadow transition"
       >
-        ← Back
+        ← Back to Tips
       </button>
 
-      <div className="bg-gradient-to-br from-green-50 via-white to-green-100 rounded-2xl shadow-xl p-6 relative border border-green-200">
-        <button
-          onClick={handleLike}
-          className={`absolute top-4 right-4 text-3xl transition-transform duration-300 ${
-            liked ? "text-red-500 scale-110" : "text-red-500 scale-110"
-          }`}
-        >
-          {liked ? <FaHeart /> : <FaHeart />}
-        </button>
-
-        <h2 className="text-4xl font-extrabold text-green-700 mb-4">
-          {tip.title}
-        </h2>
-
-        {tip.imageUrl && (
+      {/* Main Card */}
+      <div className="grid md:grid-cols-2 gap-10 bg-white border border-green-200 rounded-3xl shadow-2xl overflow-hidden">
+        {/* Image Section */}
+        <div className="relative">
           <img
             src={tip.imageUrl}
             alt={tip.title}
-            className="w-full h-64 object-cover rounded-xl mb-6 shadow-md"
+            className="w-full h-full object-cover"
           />
-        )}
-
-        <p className="text-gray-800 text-lg mb-6">{tip.description}</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-          {tip.plantType && (
-            <p>
-              <span className="font-semibold text-green-700">Plant Type:</span>{" "}
-              {tip.plantType}
-            </p>
-          )}
-          <p>
-            <span className="font-semibold text-green-700"> Difficulty:</span>{" "}
-            {tip.difficulty}
-          </p>
-          <p>
-            <span className="font-semibold text-green-700">Category:</span>{" "}
-            {tip.category}
-          </p>
-          <p>
-            <span className="font-semibold text-green-700">Availability:</span>{" "}
-            {tip.availability}
-          </p>
+          <button
+            onClick={handleLike}
+            className="absolute top-5 right-5 text-4xl text-white drop-shadow-lg hover:scale-110 transition"
+          >
+            {liked ? (
+              <FaHeart className="text-red-500 cursor-pointer" />
+            ) : (
+              <FaRegHeart className="cursor-pointer" />
+            )}
+          </button>
         </div>
 
-        {/* User Info Box */}
-        <div className="mt-8 bg-green-100 border border-green-300 p-4 rounded-lg text-sm text-green-800 shadow-sm">
-          <p>
-            <strong> Submitted by:</strong> {tip.userName || "Anonymous"}
-          </p>
-          <p>
-            <strong> Email:</strong> {tip.userEmail || "Not provided"}
-          </p>
+        {/* Content Section */}
+        <div className="p-6 flex flex-col justify-between">
+          <div>
+            <h1 className="text-4xl font-bold text-[#2F855A] mb-4">
+              {tip.title}
+            </h1>
+            <p className="text-gray-700 text-base leading-relaxed mb-6">
+              {tip.description}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 mb-6">
+              {tip.plantType && (
+                <p>
+                  <span className="font-semibold text-[#2F855A]">
+                    🌿 Plant Type:
+                  </span>{" "}
+                  {tip.plantType}
+                </p>
+              )}
+              <p>
+                <span className="font-semibold text-[#2F855A]">
+                  📘 Difficulty:
+                </span>{" "}
+                {tip.difficulty}
+              </p>
+              <p>
+                <span className="font-semibold text-[#2F855A]">
+                  📂 Category:
+                </span>{" "}
+                {tip.category}
+              </p>
+              <p>
+                <span className="font-semibold text-[#2F855A]">
+                  👁️ Visibility:
+                </span>{" "}
+                {tip.availability}
+              </p>
+              <p>
+                <span className="font-semibold text-[#2F855A]">
+                  ❤️ Total Likes:
+                </span>{" "}
+                {tip.totalLiked || 0}
+              </p>
+            </div>
+          </div>
+
+          {/* Author Info */}
+          <div className="mt-4 bg-green-50 border border-green-200 p-4 rounded-xl text-sm text-green-900 shadow-sm">
+            <p>
+              <strong>👤 Submitted by:</strong> {tip.userName || "Anonymous"}
+            </p>
+            <p>
+              <strong>✉️ Email:</strong> {tip.userEmail || "Not provided"}
+            </p>
+          </div>
         </div>
       </div>
     </div>

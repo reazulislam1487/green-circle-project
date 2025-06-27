@@ -32,7 +32,7 @@ const BrowseTips = () => {
   if (loading || !tips) return <Loading />;
 
   return (
-    <div className="bg-[#F9F9F6] py-10 px-6 md:px-8 min-h-screen">
+    <div className="bg-[#F9F9F6] py-10 px-6 md:px-8 xl:px-0 min-h-screen">
       <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-3xl p-6 sm:p-10 border border-[#A0DAB6]">
         <h2 className="text-4xl font-bold text-[#2F855A] text-center mb-10">
           Browse Garden Tips
@@ -81,60 +81,42 @@ const BrowseTips = () => {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto border border-[#A0DAB6] rounded-lg shadow-md">
-          <table className="min-w-full text-sm sm:text-base text-left">
-            <thead className="bg-gradient-to-r from-[#2F855A] to-[#3BAE7B] text-white">
-              <tr>
-                <th className="p-4 font-semibold">Image</th>
-                <th className="p-4 font-semibold">Title</th>
-                <th className="p-4 font-semibold hidden md:table-cell">
-                  Category
-                </th>
-                <th className="p-4 font-semibold text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {sortedTips.map((tip) => (
-                <tr
-                  key={tip._id}
-                  className="border-b hover:bg-[#F0FFF4] transition duration-200"
-                >
-                  <td className="p-4">
-                    <img
-                      src={tip.imageUrl}
-                      alt={tip.title}
-                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg object-cover border border-[#A0DAB6] shadow-sm"
-                    />
-                  </td>
-                  <td className="p-4 text-[#2F855A] font-medium">
+        {/* Tips Grid */}
+        {sortedTips.length === 0 ? (
+          <p className="text-center text-gray-500 p-10">
+            No public tips available.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {sortedTips.map((tip) => (
+              <div
+                key={tip._id}
+                className="flex flex-col bg-white rounded-xl shadow-lg border border-[#A0DAB6] overflow-hidden"
+                style={{ minHeight: "380px" }} // consistent card height
+              >
+                <img
+                  src={tip.imageUrl}
+                  alt={tip.title}
+                  className="w-full h-40 object-cover"
+                />
+                <div className="flex flex-col flex-grow p-4">
+                  <h3 className="text-green-800 font-semibold text-lg mb-2 line-clamp-2">
                     {tip.title}
-                  </td>
-                  <td className="p-4 text-gray-700 hidden md:table-cell">
-                    {tip.category}
-                  </td>
-                  <td className="p-4 text-center">
-                    <Link
-                      to={`/browseTips/${tip._id}`}
-                      className="inline-flex items-center gap-2 text-[#2F855A] font-semibold hover:text-[#276749] transition"
-                    >
-                      <FaEye />
-                      <span className="hidden sm:inline">See More</span>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-
-              {sortedTips.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="text-center p-6 text-gray-500">
-                    No public tips available.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                  </h3>
+                  <p className="text-gray-700 flex-grow text-sm mb-4 line-clamp-3">
+                    {tip.description}
+                  </p>
+                  <Link
+                    to={`/browseTips/${tip._id}`}
+                    className="mt-auto inline-block text-green-700 font-semibold hover:text-green-900 transition"
+                  >
+                    See More <FaEye className="inline ml-1" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
