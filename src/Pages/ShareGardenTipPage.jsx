@@ -10,9 +10,11 @@ import {
 } from "react-icons/md";
 import { GiPlantRoots } from "react-icons/gi";
 import { FaSeedling, FaUser, FaEnvelope, FaImage } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const ShareGardenTipPage = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     plantType: "",
@@ -38,6 +40,7 @@ const ShareGardenTipPage = () => {
       userEmail: user.email,
       userName: user.displayName || user.name,
     };
+
     fetch("https://a10-server-sandy.vercel.app/shareGardenTipPage", {
       method: "POST",
       headers: {
@@ -63,6 +66,7 @@ const ShareGardenTipPage = () => {
             category: "Composting",
             availability: "Public",
           });
+          navigate("/dashboard/myTips");
         } else {
           Swal.fire({
             icon: "error",
@@ -73,59 +77,68 @@ const ShareGardenTipPage = () => {
         }
       });
   };
-
   return (
-    <div className="max-w-3xl my-20 mx-auto p-6 bg-white shadow-md rounded-lg border border-green-200">
-      <h2 className="text-3xl font-bold text-green-600 mb-8 text-center">
+    <div className="max-w-4xl mx-auto mb-10 p-8 bg-[#F9F9F6] shadow-lg border border-green-100 rounded-2xl">
+      <h2 className=" text-2xl md:text-4xl  font-bold text-[#2F855A] text-center mb-10">
         Share a Garden Tip
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-5 text-green-500 ">
-        {/* Title */}
-        <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <MdTitle className="text-green-700" />
-            Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="How I Grow Tomatoes Indoors"
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-            required
-          />
-        </div>
-
-        {/* Plant Type */}
-        <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <GiPlantRoots className="text-green-700" />
-            Plant Type/Topic
-          </label>
-          <input
-            type="text"
-            name="plantType"
-            value={formData.plantType}
-            onChange={handleChange}
-            placeholder="Tomatoes, Herbs, etc."
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-            required
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="space-y-6 text-[#2D3748]">
+        {/* Input Field Reusable Block */}
+        {[
+          {
+            icon: <MdTitle className="text-[#2F855A]" />,
+            label: "Title",
+            type: "text",
+            name: "title",
+            placeholder: "How I Grow Tomatoes Indoors",
+            required: true,
+          },
+          {
+            icon: <GiPlantRoots className="text-[#2F855A]" />,
+            label: "Plant Type/Topic",
+            type: "text",
+            name: "plantType",
+            placeholder: "Tomatoes, Herbs, etc.",
+            required: true,
+          },
+          {
+            icon: <FaImage className="text-[#2F855A]" />,
+            label: "Image URL",
+            type: "url",
+            name: "imageUrl",
+            placeholder: "https://example.com/image.jpg",
+            required: false,
+          },
+        ].map(({ icon, label, type, name, placeholder, required }) => (
+          <div key={name}>
+            <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
+              {icon}
+              {label}
+            </label>
+            <input
+              type={type}
+              name={name}
+              value={formData[name]}
+              onChange={handleChange}
+              placeholder={placeholder}
+              required={required}
+              className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F855A] bg-white transition"
+            />
+          </div>
+        ))}
 
         {/* Difficulty Level */}
         <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <FaSeedling className="text-green-700" />
+          <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
+            <FaSeedling className="text-[#2F855A]" />
             Difficulty Level
           </label>
           <select
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F855A] bg-white transition"
           >
             <option>Easy</option>
             <option>Medium</option>
@@ -135,8 +148,8 @@ const ShareGardenTipPage = () => {
 
         {/* Description */}
         <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <MdDescription className="text-green-700" />
+          <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
+            <MdDescription className="text-[#2F855A]" />
             Description
           </label>
           <textarea
@@ -144,39 +157,23 @@ const ShareGardenTipPage = () => {
             value={formData.description}
             onChange={handleChange}
             placeholder="Write your gardening tip here..."
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
             rows={4}
             required
+            className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F855A] bg-white transition"
           ></textarea>
-        </div>
-
-        {/* Image URL */}
-        <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <FaImage className="text-green-700" />
-            Image URL
-          </label>
-          <input
-            type="url"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleChange}
-            placeholder="https://example.com/image.jpg"
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
-          />
         </div>
 
         {/* Category */}
         <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <MdOutlineCategory className="text-green-700" />
+          <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
+            <MdOutlineCategory className="text-[#2F855A]" />
             Category
           </label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F855A] bg-white transition"
           >
             <option>Composting</option>
             <option>Plant Care</option>
@@ -186,11 +183,11 @@ const ShareGardenTipPage = () => {
 
         {/* Availability */}
         <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
+          <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
             {formData.availability === "Public" ? (
-              <MdPublic className="text-green-700" />
+              <MdPublic className="text-[#2F855A]" />
             ) : (
-              <MdLock className="text-green-700" />
+              <MdLock className="text-[#2F855A]" />
             )}
             Availability
           </label>
@@ -198,46 +195,47 @@ const ShareGardenTipPage = () => {
             name="availability"
             value={formData.availability}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full px-4 py-2 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2F855A] bg-white transition"
           >
             <option>Public</option>
             <option>Hidden</option>
           </select>
         </div>
 
-        {/* User Name */}
-        <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <FaUser className="text-green-700" />
-            Your Name
-          </label>
-          <input
-            type="text"
-            value={user?.displayName || user?.name || ""}
-            readOnly
-            className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700 cursor-not-allowed"
-          />
+        {/* User Info */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
+              <FaUser className="text-[#2F855A]" />
+              Your Name
+            </label>
+            <input
+              type="text"
+              value={user?.displayName || user?.name || ""}
+              readOnly
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 cursor-not-allowed"
+            />
+          </div>
+          <div>
+            <label className="flex items-center gap-2 mb-2 font-medium text-green-900">
+              <FaEnvelope className="text-[#2F855A]" />
+              Your Email
+            </label>
+            <input
+              type="email"
+              value={user?.email || ""}
+              readOnly
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 cursor-not-allowed"
+            />
+          </div>
         </div>
 
-        {/* User Email */}
-        <div>
-          <label className="flex items-center gap-2 mb-1 text-green-900 font-medium">
-            <FaEnvelope className="text-green-700" />
-            Your Email
-          </label>
-          <input
-            type="email"
-            value={user?.email || ""}
-            readOnly
-            className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700 cursor-not-allowed"
-          />
-        </div>
-
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition duration-200"
+          className="w-full cursor-pointer py-3 bg-[#2F855A] hover:bg-[#276749] text-white font-semibold text-lg rounded-lg transition duration-300 shadow-md"
         >
-          Submit Tip
+          Add Tip
         </button>
       </form>
     </div>

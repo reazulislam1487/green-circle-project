@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FiLogOut } from "react-icons/fi";
@@ -8,6 +8,17 @@ import { AuthContext } from "../Context/AuthContext";
 const Banners = () => {
   const { user, userLogOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -42,15 +53,22 @@ const Banners = () => {
   const navItems = [
     { to: "/", label: "Home" },
     { to: "/exploreGardeners", label: "Explore Gardeners" },
-    { to: "/browseTips", label: "Browse Tips" },
+    { to: "/browseTips", label: "All Tips" },
     { to: "/aboutUs", label: "About Us" },
     { to: "/contactUs", label: "Contact Us" },
     ...(user ? [{ to: "/dashboard", label: "Dashboard" }] : []),
   ];
 
   return (
-    <header className="bg-[#2F855A] shadow-lg sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between pl-0 pr-4 py-3 lg:px-10">
+    // <header className="bg-[#2F855A] sticky top-0 shadow-lg z-50">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-[#2F855A]/70 backdrop-blur-md shadow-md"
+          : "bg-[#2F855A]"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto  flex items-center justify-between pl-0 pr-4 md:pr-0 py-3 ">
         {/* Logo */}
 
         <div className="hidden lg:flex items-center gap-2">

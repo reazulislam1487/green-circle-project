@@ -206,8 +206,8 @@ const BrowseTips = () => {
   if (loading || !tips) return <Loading />;
 
   return (
-    <div className="bg-[#F9F9F6] py-10 px-4  md:px-8 xl:px-0 min-h-screen">
-      <div className="max-w-6xl mx-auto bg-white shadow-xl rounded-3xl p-6 sm:p-10 border border-[#A0DAB6]">
+    <div className="bg-[#F9F9F6] py-10 px-6 md:px-8 xl:px-0 min-h-screen">
+      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-3xl p-6 sm:p-10 border border-[#A0DAB6]">
         <h2 className="text-4xl font-bold text-[#2F855A] text-center mb-10">
           Browse Garden Tips
         </h2>

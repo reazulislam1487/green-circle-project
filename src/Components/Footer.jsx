@@ -5,45 +5,44 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-[#2F855A] via-[#A0DAB6] to-[#2F855A] text-[#2D3748] py-14 px-6 md:px-20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10">
-        {/* Contact Info */}
+        {/* Logo Info */}
         <div className="flex-1">
-          <h3 className="text-xl font-bold mb-4"> Contact Us</h3>
-          <p className="mb-1">Faridpur City, Dhaka, Bangladesh</p>
-          <p className="mb-1">
-            Email:{" "}
-            <a
-              href="mailto:reazulislam1487@gmail.com"
-              className="text-[#2F855A] hover:underline"
-            >
-              reazulislam1487@gmail.com
-            </a>
-          </p>
-          <p>
-            Phone:{" "}
-            <a
-              href="tel:+8801770807782"
-              className="text-[#2F855A] hover:underline"
-            >
-              +8801770807782
-            </a>
-          </p>
+          {/* logo */}
+          <div className="flex items-center gap-2 mb-4">
+            <img
+              src="https://i.ibb.co/N2CRDq0w/logo.png"
+              alt="GreenCircle Logo"
+              className="w-10 h-10 rounded-full"
+            />
+            <span className="text-xl font-bold inline tracking-wide">
+              GreenCircle
+            </span>
+          </div>
+          <div>
+            GreenCircle is your trusted community hub for gardening inspiration,
+            sustainable tips, and plant-care wisdom. Whether you're a beginner
+            or a seasoned grower, join us to explore, share, and thrive together
+            in a greener world.
+          </div>
         </div>
 
-        {/* Terms */}
+        {/* Useful Links */}
         <div className="flex-1">
-          <h3 className="text-xl font-bold mb-4"> Terms</h3>
-          <ul>
-            {["terms", "privacy", "refund"].map((item, idx) => (
-              <li key={idx} className="mb-2">
+          <h3 className="text-xl font-bold mb-4 ">Useful Links</h3>
+          <ul className="space-y-2">
+            {[
+              { label: "Home", path: "/" },
+              { label: "Explore Gardeners", path: "/exploreGardeners" },
+              { label: "Browse Tips", path: "/browseTips" },
+              { label: "About Us", path: "/aboutUs" },
+              { label: "Contact Us", path: "/contactUs" },
+            ].map((link, idx) => (
+              <li key={idx}>
                 <a
-                  href={`/${item}`}
-                  className="hover:text-[#F6C26B] transition-colors font-medium"
+                  href={link.path}
+                  className=" hover:text-[#F6C26B] transition-colors font-medium"
                 >
-                  {item === "terms"
-                    ? "Terms of Service"
-                    : item === "privacy"
-                    ? "Privacy Policy"
-                    : "Refund Policy"}
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -51,7 +50,7 @@ const Footer = () => {
         </div>
 
         {/* Social Links */}
-        <div className="flex-1">
+        <div className="flex-1 ">
           <h3 className="text-xl font-bold mb-4"> Follow Us</h3>
           <div className="flex space-x-6 text-[#2F855A] text-2xl">
             <a

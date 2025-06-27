@@ -65,7 +65,7 @@ const items = [
 
 const TeamShowcase = () => {
   return (
-    <div className="h-[700px] relative z-10">
+    <div className="relative overflow-hidden z-10">
       <ChromaGrid
         items={items}
         radius={300}

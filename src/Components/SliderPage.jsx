@@ -46,7 +46,7 @@ const SliderPage = () => {
     <Slider className="mb-20 overflow-hidden" {...settings}>
       {slides.map((slide, index) => (
         <div key={index}>
-          <div className="relative w-full h-[calc(100vh-4rem)]">
+          <div className="relative w-full h-[calc(100vh-10rem)]">
             <img
               src={slide.img}
               alt={slide.heading}

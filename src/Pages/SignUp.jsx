@@ -65,63 +65,103 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="card  my-20 bg-gradient-to-br from-green-200 via-green-400 to-green-600  max-w-sm  mx-auto shrink-0 shadow-2xl">
-      <div className="card-body">
-        <h1 className="text-5xl font-bold">Sign Up</h1>
-        <form onSubmit={handleSignUp} className="fieldset">
-          <label className="label text-black">Name</label>
-          <input
-            type="Text"
-            name="name"
-            className="input"
-            placeholder="Name"
-            required
-          />
-          <label className="label text-black">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="input"
-            placeholder="Email"
-          />
-          <label className="label text-black">Photo Url </label>
-          <input
-            type="url"
-            name="photo"
-            className="input"
-            placeholder="Photo Url"
-            required
-          />
-          <label className="label text-black"> Password </label>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              className="input"
-              placeholder="Password"
-              required
-            />
-            {error && <p className="text-error text-sm">{error}</p>}
-            <button
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-              className="absolute top-3.5 right-6 cursor-pointer"
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-br from-green-100 via-green-200 to-green-300 px-4">
+      <div className="w-full max-w-xl bg-white rounded-2xl shadow-2xl p-8 mx-4">
+        <h1 className="text-4xl font-bold text-green-700 text-center mb-6">
+          Create a new account
+        </h1>
+        <form onSubmit={handleSignUp} className="space-y-4">
+          <div className="flex flex-col md:flex-row gap-5">
+            <div className="flex-1">
+              {/* Name */}
+
+              <label className="block text-green-900 font-medium mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Name"
+                required
+              />
+            </div>
+            {/* Email */}
+            <div className="flex-1">
+              <label className="block text-green-900 font-medium mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Email"
+                required
+              />
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-5">
+            {/* Photo URL */}
+            <div className="flex-1">
+              <label className="block text-green-900 font-medium mb-1">
+                Photo URL
+              </label>
+              <input
+                type="url"
+                name="photo"
+                className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Photo URL"
+                required
+              />
+            </div>
+            {/* Password */}
+            <div className="flex-1">
+              <label className="block text-green-900 font-medium mb-1">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="w-full px-4 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-3 right-4 text-green-700"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+              {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
+            </div>
           </div>
 
-          <button className="btn btn-neutral mt-4">Register</button>
-          <div className="mt-4 text-center ">
-            <span>Already have an account? </span>
-            <Link to="/signIn" className="link link-hover text-red-500">
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 cursor-pointer mt-5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition duration-200"
+          >
+            Register
+          </button>
+
+          {/* Link to Login */}
+          <div className="text-center text-sm text-green-800 mt-2">
+            Already have an account?{" "}
+            <Link
+              to="/signIn"
+              className="text-red-500 font-semibold hover:underline"
+            >
               Login
             </Link>
           </div>
         </form>
-        <div>
-          <SoicalLogin></SoicalLogin>
+
+        {/* Social Login */}
+        <div className="mt-6">
+          <SoicalLogin />
         </div>
       </div>
     </div>

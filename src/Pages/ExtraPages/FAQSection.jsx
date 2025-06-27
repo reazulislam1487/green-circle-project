@@ -33,13 +33,13 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-transparent">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 px-6  bg-transparent">
+      <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-extrabold text-center text-[#2F855A] mb-16 drop-shadow-md"
+          className="text-2xl md:text-4xl font-extrabold text-center text-[#2F855A] mb-16 drop-shadow-md"
         >
           Frequently Asked Questions
         </motion.h2>
@@ -75,7 +75,11 @@ const FAQSection = () => {
                     transition={{ duration: 0.3 }}
                     className="text-[#2F855A] group-hover:text-green-900"
                   >
-                    {isOpen ? <FiChevronUp size={26} /> : <FiChevronDown size={26} />}
+                    {isOpen ? (
+                      <FiChevronUp size={26} />
+                    ) : (
+                      <FiChevronDown size={26} />
+                    )}
                   </motion.div>
                 </div>
 

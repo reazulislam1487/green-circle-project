@@ -2,8 +2,8 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <section className="bg-[#F9F9F6] text-[#2D3748] py-16 px-6 md:px-20">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="bg-[#F9F9F6] text-[#2D3748] py-16 px-6 ">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left: Image */}
         <div>
           <img

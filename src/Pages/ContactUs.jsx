@@ -2,8 +2,8 @@ import React from "react";
 
 const ContactUs = () => {
   return (
-    <section className="bg-[#F9F9F6] text-[#2D3748] py-16 px-6 md:px-20">
-      <div className="max-w-4xl mx-auto text-center mb-12">
+    <section className="bg-[#F9F9F6] text-[#2D3748] py-16 px-6 ">
+      <div className="max-w-5xl mx-auto text-center mb-12">
         <h2 className="text-4xl font-bold text-[#2F855A] mb-4">Get in Touch</h2>
         <p className="text-[#718096] text-lg">
           We'd love to hear from you! Whether you have a question about your

@@ -25,9 +25,9 @@ const FeaturedGardeners = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24 bg-[#F3FDF7] rounded-3xl shadow-inner">
-      <h2 className="text-5xl font-extrabold text-center text-[#2F855A] mb-16 tracking-tight drop-shadow-md">
-        🌿 Featured Gardeners
+    <section className="max-w-7xl mx-auto px-6 py-10 bg-[#F3FDF7] rounded-3xl shadow-inner">
+      <h2 className="text-4xl font-extrabold text-center text-[#2F855A] mb-10 tracking-tight drop-shadow-md">
+         Featured Gardeners
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
