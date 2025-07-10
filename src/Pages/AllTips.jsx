@@ -39,9 +39,9 @@ const BrowseTips = () => {
         </h2>
 
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-start gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-start gap-6  md:gap-4 mb-8">
           {/* Difficulty Filter */}
-          <div className="w-full sm:w-64">
+          <div className="w-full sm:w-72">
             <label className="block mb-1 text-sm font-medium text-[#2D3748]">
               Filter by Difficulty
             </label>
@@ -57,7 +57,7 @@ const BrowseTips = () => {
           </div>
 
           {/* Sort Filter */}
-          <div className="w-full sm:w-64">
+          <div className="w-full sm:w-72">
             <label className="block mb-1 text-sm font-medium text-[#2D3748]">
               Sort by Title
             </label>
@@ -87,7 +87,7 @@ const BrowseTips = () => {
             No public tips available.
           </p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {sortedTips.map((tip) => (
               <div
                 key={tip._id}
